@@ -1,8 +1,27 @@
 <div>{{details.room.name}}</div>
 <div>{{details.room.description}}</div>
 <img ng-src="{{details.room.thumbnail}}"/>
-<div>{{details.room.stars}}</div>
+<div>
+    <span class="starRating">
+        <input id="rating5" type="radio" name="rating" value="5" ng-checked="details.room.stars === 5" disabled>
+        <label for="rating5">5</label>
+        <input id="rating4" type="radio" name="rating" value="4" ng-checked="details.room.stars === 4" disabled>
+        <label for="rating4">4</label>
+        <input id="rating3" type="radio" name="rating" value="3" ng-checked="details.room.stars === 3" disabled>
+        <label for="rating3">3</label>
+        <input id="rating2" type="radio" name="rating" value="2" ng-checked="details.room.stars === 2" disabled>
+        <label for="rating2">2</label>
+        <input id="rating1" type="radio" name="rating" value="1" ng-checked="details.room.stars === 1" disabled>
+        <label for="rating1">1</label>
+      </span>
+</div>
 <div>{{details.room.difficulty}}</div>
+<div class="rating-bar">
+    <div class="rate rate-{{details.room.difficulty}}">
+      <span class="animate blue"></span>
+    </div>
+  </div>
+<div>{{details.room.escapetime}}</div>
 <div>{{details.room.min_players}}</div>
 <div>{{details.room.max_players}}</div>
 <div>{{details.room.votes}}</div>

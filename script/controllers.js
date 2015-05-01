@@ -22,6 +22,7 @@ var roomDetailsCtrl = function ($http, $stateParams) {
             thumbnail: data.roomDetails.thumbnail,
             stars: data.roomDetails.stars,
             difficulty: data.roomDetails.difficulty,
+            escapetime: data.roomDetails.escapetime,
             min_players: data.roomDetails.min_players,
             max_players: data.roomDetails.max_players,
             votes: data.roomDetails.votes
