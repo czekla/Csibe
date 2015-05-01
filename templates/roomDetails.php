@@ -1,6 +1,5 @@
 <?php
 
-//$id = $_REQUEST["id"];
-$id = 1;
+$id = $_REQUEST["id"];
 echo $id;
 ?>

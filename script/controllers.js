@@ -4,7 +4,7 @@ var welcomeCtrl = function($scope, $http){
 welcomeCtrl.$inject = ["$scope", "$http"];
 
 var roomsCtrl = function($scope, $http, expandDetailService){
-    expandDetailService.Grid.init();
+    expandDetailService.Grid().init();
 };
 roomsCtrl.$inject = ["$scope", "$http", "expandDetailService"];
 

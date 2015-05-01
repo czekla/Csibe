@@ -162,7 +162,7 @@ var expandDetailService = function ($http, $compile, $rootScope) {
         return deferred ? deferred.promise($this) : $this;
     };
 
-    var Grid = (function () {
+    var Grid = function () {
 
         // list of items
         var $grid = $('#og-grid'),
@@ -397,7 +397,7 @@ var expandDetailService = function ($http, $compile, $rootScope) {
                     self.$description.html(eldata.description);
                     self.$uisref.attr('data-link', eldata.uisref);
                     self.$uisref.attr('data-text', "Visit website");
-                    
+
 
                     // remove the current image in the preview
                     if (typeof self.$largeImg != 'undefined') {
@@ -418,7 +418,7 @@ var expandDetailService = function ($http, $compile, $rootScope) {
                             }
                         }).attr('src', eldata.largesrc);
                     }
-                    
+
                     $compile(self.$uisref)($rootScope);
                 });
             },
@@ -525,7 +525,7 @@ var expandDetailService = function ($http, $compile, $rootScope) {
             addItems: addItems
         };
 
-    })();
+    };
 
     return {
         Grid: Grid
