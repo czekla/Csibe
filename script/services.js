@@ -385,7 +385,6 @@ var expandDetailService = function ($http, $compile, $rootScope) {
                 $http.post("./backend/getRoomPreview.php", {
                     roomid: roomid
                 }).success(function (data, status, headers, config) {
-                    console.log(data.roomDetails);
                     var eldata = {
                         uisref: data.roomDetails.uisref,
                         largesrc: data.roomDetails.largesrc,

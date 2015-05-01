@@ -21,8 +21,9 @@ angular.module("Csibe-app", ['ui.router', 'angular-loading-bar'])
                         })
                         .state('roomdetails', {
                             url: '/rooms/view/:roomid',
-                            templateUrl: './templates/roomDetails.php',
-                            controller: 'roomDetailsCtrl'
+                            templateUrl: './templates/roomDetails.html',
+                            controller: 'roomDetailsCtrl',
+                            controllerAs: 'details'
                         })
                         .state('menu', {
                             url: '/menu',
