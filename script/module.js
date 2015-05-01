@@ -19,8 +19,8 @@ angular.module("Csibe-app", ['ui.router', 'angular-loading-bar'])
                             templateUrl: './templates/rooms.php',
                             controller: 'roomsCtrl'
                         })
-                        .state('roomview', {
-                            url: '/rooms/view',
+                        .state('roomdetails', {
+                            url: '/rooms/view/:roomid',
                             templateUrl: './templates/roomDetails.php',
                             controller: 'roomDetailsCtrl'
                         })
@@ -39,7 +39,8 @@ angular.module("Csibe-app", ['ui.router', 'angular-loading-bar'])
                 restrict: 'A',
                 link: function (scope, element, attrs) {
                     var el = $compile('<a ui-sref="' + attrs.link + '">' + attrs.text + '</a>')(scope);
-                    element.replaceWith(el);
+                    element.children().remove();
+                    element.append(el);
                 }
             };
         })

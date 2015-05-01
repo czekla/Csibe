@@ -8,7 +8,8 @@ var roomsCtrl = function($scope, $http, expandDetailService){
 };
 roomsCtrl.$inject = ["$scope", "$http", "expandDetailService"];
 
-var roomDetailsCtrl = function($scope, $http){
+var roomDetailsCtrl = function($scope, $http, $stateParams){
     //$http.get("backend/test.php");
+    console.log($stateParams.roomid);
 };
-roomDetailsCtrl.$inject = ["$scope", "$http"];
+roomDetailsCtrl.$inject = ["$scope", "$http" ,"$stateParams"];

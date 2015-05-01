@@ -410,7 +410,7 @@ var expandDetailService = function ($http, $compile, $rootScope) {
                         self.$loading.show();
                         $('<img/>').load(function () {
                             var $img = $(this);
-                            if ($img.attr('src') === self.$item.children('a').data('largesrc')) {
+                            if ($img.attr('src') === eldata.largesrc) {
                                 self.$loading.hide();
                                 self.$fullimage.find('img').remove();
                                 self.$largeImg = $img.fadeIn(350);

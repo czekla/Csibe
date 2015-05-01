@@ -1,5 +1,3 @@
-<?php ?>
-
 <div class="rooms-container">
     <ul id="og-grid" class="og-grid">
         <li>
