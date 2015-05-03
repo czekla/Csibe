@@ -9,10 +9,10 @@ $primary-color: #fff;
     border-radius: $radius;
 }
 
-@mixin box-shadow($dimension, $color) {
-    -webkit-box-shadow: $dimension $color;
-    -moz-box-shadow: $dimension $color;
-    box-shadow: $dimension $color;
+@mixin box-shadow($param) {
+    -webkit-box-shadow: $param;
+    -moz-box-shadow: $param;
+    box-shadow: $param;
 }
 
 @mixin background-size($bgsize) {
@@ -20,4 +20,12 @@ $primary-color: #fff;
     -moz-background-size: $bgsize;
     -o-background-size: $bgsize;
     background-size: $bgsize;
+}
+
+@mixin transform($param){
+    -webkit-transform: $param;
+    -moz-transform: $param;
+    -o-transform: $param;
+    -ms-transform: $param;
+    transform: $param;
 }

@@ -1,4 +1,5 @@
 angular.module("Csibe-app", ['ui.router', 'angular-loading-bar'])
+        .controller("menuCtrl", menuCtrl)
         .controller("welcomeCtrl", welcomeCtrl)
         .controller("roomsCtrl", roomsCtrl)
         .controller("roomDetailsCtrl", roomDetailsCtrl)
@@ -52,7 +53,7 @@ angular.module("Csibe-app", ['ui.router', 'angular-loading-bar'])
         })
         .run(
                 ['$rootScope', '$state', '$stateParams', 'slidingHeaderLayoutService',
-                    function ($rootScope, $state, $stateParams,slidingHeaderLayoutService) {
+                    function ($rootScope, $state, $stateParams, slidingHeaderLayoutService) {
                         $rootScope.$state = $state;
                         $rootScope.$stateParams = $stateParams;
                         slidingHeaderLayoutService.init();

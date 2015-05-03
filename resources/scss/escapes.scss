@@ -2,6 +2,7 @@
     Created on : 2015.04.13., 20:39:19
     Author     : Qbi
 */
+@import "fonts.scss";
 @import "_reset.scss";
 @import "_common.scss";
 
@@ -21,7 +22,7 @@ body {
     width: 1000px;
     /*margin: 10px auto;*/
     background-color: rgba(0,0,0,0.75);
-    @include box-shadow(0px 0px 10px 1px,rgba(255,255,255,0.75));
+    @include box-shadow(0px 0px 10px 1px rgba(255,255,255,0.75));
 }
 .main-container {
     display: block;
@@ -32,3 +33,7 @@ body {
     color: red;
 }
 
+@import "welcome.scss";
+@import "grid.scss";
+@import "rating.scss";
+@import "timeline.scss";

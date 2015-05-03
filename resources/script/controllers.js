@@ -1,16 +1,27 @@
+var menuCtrl = function ($rootScope, slidingHeaderLayoutService) {
+    $rootScope.$on('$stateChangeStart',
+            function (event, toState, toParams, fromState, fromParams) {
+
+                if (toState.name == "welcome") {
+                    slidingHeaderLayoutService.close();
+                } else {
+                    slidingHeaderLayoutService.open();
+                    slidingHeaderLayoutService.noscroll();
+                }
+            });
+};
+menuCtrl.$inject = ["$rootScope", "slidingHeaderLayoutService"];
+
 var welcomeCtrl = function () {
 };
 welcomeCtrl.$inject = [];
 
-var roomsCtrl = function ($http, expandDetailService, slidingHeaderLayoutService) {
-    slidingHeaderLayoutService.open();
+var roomsCtrl = function ($http, expandDetailService) {
     expandDetailService.Grid().init();
 };
-roomsCtrl.$inject = ["$http", "expandDetailService", "slidingHeaderLayoutService"];
+roomsCtrl.$inject = ["$http", "expandDetailService"];
 
-var roomDetailsCtrl = function ($http, $stateParams, $sce, slidingHeaderLayoutService) {
-    slidingHeaderLayoutService.open();
-    slidingHeaderLayoutService.noscroll();
+var roomDetailsCtrl = function ($http, $stateParams, $sce) {
     var $vm = this;
     var roomid = $stateParams.roomid;
 
@@ -29,12 +40,12 @@ var roomDetailsCtrl = function ($http, $stateParams, $sce, slidingHeaderLayoutSe
         };
     });
 
-    $http.post("./backend/timelinedata.json", {
+    $http.post("./backend/getTimelineData.php", {
         roomid: roomid
     }).success(function (data, status, headers, config) {
         $vm.timeline = data.timeline;
     });
-    
+
     $vm.printHtml = function (content) {
         return $sce.trustAsHtml(content);
     };
@@ -47,4 +58,4 @@ var roomDetailsCtrl = function ($http, $stateParams, $sce, slidingHeaderLayoutSe
     };
 
 };
-roomDetailsCtrl.$inject = ["$http", "$stateParams", "$sce", "slidingHeaderLayoutService"];
+roomDetailsCtrl.$inject = ["$http", "$stateParams", "$sce"];

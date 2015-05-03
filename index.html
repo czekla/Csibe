@@ -6,11 +6,7 @@
 
         <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">-->
         <link rel="stylesheet" href="loading-bar/loading-bar.css"/>
-        <link rel="stylesheet" href="resources/css/grid.css"/>
-        <link rel="stylesheet" href="resources/css/index.css"/>
-        <link rel="stylesheet" href="3DTimeline/3Dtimeline.css"/>
-        <link rel="stylesheet" href="resources/css/rating.css"/>
-        <link rel="stylesheet" href="resources/css/welcome.css"/>
+        <link rel="stylesheet" href="resources/css/escapes.css"/>
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
@@ -30,7 +26,6 @@
                     <div class="intro__logo"></div>
                 </div>
                 <div class="intro__wrapper">
-
                     <button class="trigger">
                         <svg width="100%" height="100%" viewBox="0 0 60 60" preserveAspectRatio="none">
                         <g class="icon icon--grid">
@@ -48,7 +43,7 @@
                     </button>
                     <div class="intro__content">
                     </div>
-                    <nav class="navbar" role="navigation">
+                    <nav class="navbar" role="navigation" ng-controller="menuCtrl">
                         <ul class="nav navbar-nav">
                             <li><a ui-sref="welcome" ui-sref-active="active">Welcome</a></li>
                             <li><a ui-sref="rooms" ui-sref-active="active">Szobák</a></li>
@@ -62,46 +57,6 @@
                     <div ui-view></div>
                 </div>
             </section>
-
         </div>
-        <!--        <script src="resources/script/classie.js"></script>
-                <script>
-                    (function () {
-                        var container = document.getElementById('container'),
-                                trigger = container.querySelector('button.trigger');
-        
-                        function toggleContent() {
-                            if (classie.has(container, 'container--open')) {
-                                classie.remove(container, 'container--open');
-                                classie.remove(trigger, 'trigger--active');
-                                window.addEventListener('scroll', noscroll);
-                            }
-                            else {
-                                classie.add(container, 'container--open');
-                                classie.add(trigger, 'trigger--active');
-                                window.removeEventListener('scroll', noscroll);
-                            }
-                        }
-        
-                        function noscroll() {
-                            window.scrollTo(0, 0);
-                        }
-        
-                        // reset scrolling position
-                        document.body.scrollTop = document.documentElement.scrollTop = 0;
-        
-                        // disable scrolling
-                        window.addEventListener('scroll', noscroll);
-        
-                        trigger.addEventListener('click', toggleContent);
-        
-        //                // For Demo purposes only (prevent jump on click)
-        //                [].slice.call(document.querySelectorAll('.items-wrap a')).forEach(function (el) {
-        //                    el.onclick = function () {
-        //                        return false;
-        //                    }
-        //                });
-                    })();
-                </script>-->
     </body>
 </html>
