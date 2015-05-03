@@ -10,7 +10,7 @@ ul {
   list-style: none; }
 
 html {
-  background-image: url("images/padlocks-51168_1920.jpg");
+  background-image: url("../images/padlocks-51168_1920.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
@@ -25,20 +25,17 @@ body {
 .main-wrapper {
   display: block;
   width: 1000px;
-  margin: 10px auto;
+  /*margin: 10px auto;*/
   background-color: rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0px 0px 10px 1px rgba(255, 255, 255, 0.75);
   -moz-box-shadow: 0px 0px 10px 1px rgba(255, 255, 255, 0.75);
-  box-shadow: 0px 0px 10px 1px rgba(255, 255, 255, 0.75);
-  /*    -webkit-box-shadow: 0px 0px 10px 1px rgba(255,255,255,0.75);
-      -moz-box-shadow: 0px 0px 10px 1px rgba(255,255,255,0.75);
-      box-shadow: 0px 0px 10px 1px rgba(255,255,255,0.75);*/ }
+  box-shadow: 0px 0px 10px 1px rgba(255, 255, 255, 0.75); }
 
 .main-container {
   display: block;
   margin: auto; }
 
 .active {
-  color: rgba(0, 226, 255, 0.88); }
+  color: red; }
 
 /*# sourceMappingURL=index.css.map */

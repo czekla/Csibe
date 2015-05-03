@@ -16,7 +16,7 @@
     display         : block;
     float           : right;
     position        : relative;
-    background      : url('./images/star-off.svg');
+    background      : url('../images/star-off.svg');
     background-size : contain;
 }
 
@@ -25,7 +25,7 @@
     display         : block;
     width           : 1.5em;
     height          : 1.5em;
-    background      : url('./images/star-on.svg');
+    background      : url('../images/star-on.svg');
     background-size : contain;
     opacity         : 0;
     transition      : opacity 0.2s linear;
@@ -38,7 +38,6 @@
 }
 
 .rating-bar{
-    /*background:white;*/
     background: rgba(0,255,0,1);
     background: -moz-linear-gradient(left, rgba(0,255,0,1) 0%, rgba(255,255,0,1) 52%, rgba(255,0,0,1) 100%);
     background: -webkit-gradient(left top, right top, color-stop(0%, rgba(0,255,0,1)), color-stop(52%, rgba(255,255,0,1)), color-stop(100%, rgba(255,0,0,1)));
@@ -47,7 +46,8 @@
     background: -ms-linear-gradient(left, rgba(0,255,0,1) 0%, rgba(255,255,0,1) 52%, rgba(255,0,0,1) 100%);
     background: linear-gradient(to right, rgba(0,255,0,1) 0%, rgba(255,255,0,1) 52%, rgba(255,0,0,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ff00', endColorstr='#ff0000', GradientType=1 );
-    padding:7px;
+
+    padding:1px;
     width:320px;
     margin:0 auto;
     height:15px;
@@ -56,21 +56,26 @@
     display:block;
     height:15px;
     background: black;
+    float: right;
+    width: 100%;
 }
 .rating-bar, .rating-bar span {
     border-radius:4px; 
 }
+.rate {
+    float:right;
+}
 /* .rate-n, n being the rating from 1 to 10 */
-.rate-1{ width:10%; }
-.rate-2{ width:20%; }
-.rate-3{ width:30%; }
-.rate-4{ width:40%; }
+.rate-1{ width:90%; }
+.rate-2{ width:80%; }
+.rate-3{ width:70%; }
+.rate-4{ width:60%; }
 .rate-5{ width:50%; }
-.rate-6{ width:60%; }
-.rate-7{ width:70%; }
-.rate-8{ width:80%; }
-.rate-9{ width:90%; }
-.rate-10{ width:100%; }
+.rate-6{ width:40%; }
+.rate-7{ width:30%; }
+.rate-8{ width:20%; }
+.rate-9{ width:10%; }
+.rate-10{ width:0%; }
 
 /* CSS3 Animation */
 .animate{

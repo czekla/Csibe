@@ -3,6 +3,7 @@ angular.module("Csibe-app", ['ui.router', 'angular-loading-bar'])
         .controller("roomsCtrl", roomsCtrl)
         .controller("roomDetailsCtrl", roomDetailsCtrl)
         .factory("expandDetailService", expandDetailService)
+        .factory("slidingHeaderLayoutService", slidingHeaderLayoutService)
         .config([
             '$stateProvider',
             '$urlRouterProvider',
@@ -12,12 +13,16 @@ angular.module("Csibe-app", ['ui.router', 'angular-loading-bar'])
                         .state('welcome', {
                             url: '/welcome',
                             templateUrl: './templates/welcome.html',
-                            controller: 'welcomeCtrl'
+                            controller: 'welcomeCtrl',
+                            onEnter: function () {
+                            }
                         })
                         .state('rooms', {
                             url: '/rooms',
                             templateUrl: './templates/rooms.php',
-                            controller: 'roomsCtrl'
+                            controller: 'roomsCtrl',
+                            onExit: function () {
+                            }
                         })
                         .state('roomdetails', {
                             url: '/rooms/view/:roomid',
@@ -46,9 +51,10 @@ angular.module("Csibe-app", ['ui.router', 'angular-loading-bar'])
             };
         })
         .run(
-                ['$rootScope', '$state', '$stateParams',
-                    function ($rootScope, $state, $stateParams) {
+                ['$rootScope', '$state', '$stateParams', 'slidingHeaderLayoutService',
+                    function ($rootScope, $state, $stateParams,slidingHeaderLayoutService) {
                         $rootScope.$state = $state;
                         $rootScope.$stateParams = $stateParams;
+                        slidingHeaderLayoutService.init();
                     }
                 ]);

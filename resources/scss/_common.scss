@@ -14,3 +14,10 @@ $primary-color: #fff;
     -moz-box-shadow: $dimension $color;
     box-shadow: $dimension $color;
 }
+
+@mixin background-size($bgsize) {
+    -webkit-background-size: $bgsize;
+    -moz-background-size: $bgsize;
+    -o-background-size: $bgsize;
+    background-size: $bgsize;
+}

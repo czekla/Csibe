@@ -532,3 +532,54 @@ var expandDetailService = function ($http, $compile, $rootScope) {
     ;
 };
 expandDetailService.$inject = ["$http", "$compile", "$rootScope"];
+
+
+var slidingHeaderLayoutService = function ($window, $rootScope) {
+    var container = angular.element('#container'),
+            trigger = container.find('button.trigger');
+
+    var toggleContent = function () {
+        if (container.hasClass('container--open')) {
+            close();
+        }
+        else {
+            open();
+        }
+    };
+
+    var open = function () {
+        container.addClass('container--open');
+        trigger.addClass('trigger--active');
+        $window.removeEventListener('scroll', noscroll);
+    };
+
+    var close = function () {
+        container.removeClass('container--open');
+        trigger.removeClass('trigger--active');
+        $window.addEventListener('scroll', noscroll);
+    };
+
+    var noscroll = function () {
+        $window.scrollTo(0, 0);
+    };
+
+    var init = function () {
+
+        // reset scrolling position
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+
+        // disable scrolling
+        $window.addEventListener('scroll', noscroll);
+
+        trigger.on('click', toggleContent);
+    };
+
+    return {
+        init: init,
+        open: open,
+        close: close,
+        toggleContent: toggleContent,
+        noscroll: noscroll
+    };
+};
+slidingHeaderLayoutService.$inject = ["$window", "$rootScope"];

@@ -15,22 +15,19 @@
         <label for="rating1">1</label>
       </span>
 </div>
-<div>{{details.room.difficulty}}</div>
 <div class="rating-bar">
     <div class="rate rate-{{details.room.difficulty}}">
       <span class="animate blue"></span>
     </div>
   </div>
-<div>{{details.room.escapetime}}</div>
-<div>{{details.room.min_players}}</div>
-<div>{{details.room.max_players}}</div>
-<div>{{details.room.votes}}</div>
+<div><img src="./resources/images/clock_green.png" alt="escapetime"/>{{details.room.escapetime}} perc</div>
+<div><img src="./resources/images/group.png" alt="players"/>{{details.room.min_players}} - {{details.room.max_players}} játékos</div>
 <section class="timeline-wrapper">
 
     <ul class="timeline">
 
         <li class="event">
-            <input type="radio" name="tl-group" checked/>
+            <input type="radio" name="tl-group" ng-click="details.uncheckRadio($event)" checked/>
             <label></label>
             <div class="thumb user-4"><span>19 Nov</span></div>
             <div class="content-perspective">
@@ -44,7 +41,7 @@
         </li>
 
         <li class="event">
-            <input type="radio" name="tl-group"/>
+            <input type="radio" name="tl-group" ng-click="details.uncheckRadio($event)"/>
             <label></label>
             <div class="thumb user-6"><span>18 Nov</span></div>
             <div class="content-perspective">
@@ -58,7 +55,7 @@
         </li>
 
         <li class="event">
-            <input type="radio" name="tl-group"/>
+            <input type="radio" name="tl-group" ng-click="details.uncheckRadio($event)"/>
             <label></label>
             <div class="thumb user-3"><span>17 Nov</span></div>
             <div class="content-perspective">

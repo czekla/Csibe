@@ -7,7 +7,6 @@
         "difficulty": 7,
         "escapetime": 90,
         "min_players": 2,
-        "max_players": 5,
-        "votes": 123
+        "max_players": 5
     }
 }
