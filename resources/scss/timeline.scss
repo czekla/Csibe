@@ -1,3 +1,5 @@
+@import "_common.scss";
+
 .timeline-wrapper {
     width: 900px;
     padding: 50px;
@@ -29,16 +31,12 @@
     position: absolute;
     width: 100px;
     height: 100px;
-    box-shadow: 
-        0 0 0 8px rgba(65,131,142,1), 
-        0 1px 1px rgba(255,255,255,0.5);
+    @include box-shadow( 
+    0 0 0 8px rgba(65,131,142,1), 
+    0 1px 1px rgba(255,255,255,0.5));
     background-repeat: no-repeat;
-    border-radius: 50%;
-    -webkit-transform: scale(0.8) translateX(24px);
-    -moz-transform: scale(0.8) translateX(24px);
-    -o-transform: scale(0.8) translateX(24px);
-    -ms-transform: scale(0.8) translateX(24px);
-    transform: scale(0.8) translateX(24px);
+    @include border-radius(50%);
+    @include transform(scale(0.8) translateX(24px));
 }
 
 .timeline-thumb:before {
@@ -118,7 +116,7 @@
     font-family: 'fontawesome-selected';
     content: '\e702';
     background: #fff;
-    border-radius: 50%;
+    @include border-radius(50%);
     color: #41838E;
     font-size: 26px;
     height: 100%;
@@ -133,12 +131,7 @@
 .timeline-content-perspective {
     margin-left: 230px;
     position: relative;
-
-    -webkit-perspective: 600px;
-    -moz-perspective: 600px;
-    -o-perspective: 600px;
-    -ms-perspective: 600px;
-    perspective: 600px;
+    @include perspective(600px);
 }
 
 .timeline-content-perspective:before {
@@ -153,23 +146,9 @@
 }
 
 .timeline-content {
-    -webkit-transform: rotateY(10deg);
-    -moz-transform: rotateY(10deg);
-    -o-transform: rotateY(10deg);
-    -ms-transform: rotateY(10deg);
-    transform: rotateY(10deg);
-
-    -webkit-transform-origin: 0 0;
-    -moz-transform-origin: 0 0;
-    -o-transform-origin: 0 0;
-    -ms-transform-origin: 0 0;
-    transform-origin: 0 0;
-
-    -webkit-transform-style: preserve-3d;
-    -moz-transform-style: preserve-3d;
-    -ms-transform-style: preserve-3d;
-    -o-transform-style: preserve-3d;
-    transform-style: preserve-3d;
+    @include transform(rotateY(10deg));
+    @include transform-origin(0 0);
+    @include transform-style(preserve-3d);
 }
 
 .timeline-content-inner {
@@ -178,7 +157,7 @@
     color: #333;
     border: none;
     border-left: 5px solid #41838e;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    @include box-shadow(0 4px 6px rgba(0,0,0,0.1));
     background: #fff;
 }
 
@@ -193,9 +172,7 @@
     position: relative;
     font-size: 18px;
     max-height: 0px;
-    /*overflow: hidden;*/
     color: transparent;
-    color: rgba(0,0,0,0);
     text-align: left;
 }
 
@@ -233,15 +210,11 @@
     top: 50%;
     height: 1px;
     background: #888;
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    transform: rotate(45deg);
+    @include transform(rotate(45deg));
 }
 
 .timeline-panel-close::after {
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    transform: rotate(-45deg);
+    @include transform(rotate(-45deg));
 }
 
 .timeline-panel-close:hover::before,
@@ -255,43 +228,23 @@
 .timeline-thumb,
 .timeline-thumb span,
 .timeline-content-inner h3 {
-    -webkit-transition: all 0.6s ease-in-out 0.2s;
-    -moz-transition: all 0.6s ease-in-out 0.2s;
-    -o-transition: all 0.6s ease-in-out 0.2s;
-    -ms-transition: all 0.6s ease-in-out 0.2s;
-    transition: all 0.6s ease-in-out 0.2s;
+    @include transition(all 0.6s ease-in-out 0.2s);
 }
 
 .timeline-content-inner {
-    -webkit-transition: box-shadow 0.8s linear 0.2s;
-    -moz-transition: box-shadow 0.8s linear 0.2s;
-    -o-transition: box-shadow 0.8s linear  0.2s;
-    -ms-transition: box-shadow 0.8s linear 0.2s;
-    transition: box-shadow 0.8s linear 0.2s;
+    @include transition(box-shadow 0.8s linear 0.2s);
 }
 
 .timeline-content {
-    -webkit-transition: -webkit-transform 0.8s cubic-bezier(.59,1.45,.69,.98) 0.2s;
-    -moz-transition: -moz-transform 0.8s cubic-bezier(.59,1.45,.69,.98) 0.2s;
-    -o-transition: -o-transform 0.8s cubic-bezier(.59,1.45,.69,.98) 0.2s;
-    -ms-transition: -ms-transform 0.8s cubic-bezier(.59,1.45,.69,.98) 0.2s;
-    transition: transform 0.8s cubic-bezier(.59,1.45,.69,.98) 0.2s;
+    @include transition(transform 0.8s cubic-bezier(.59,1.45,.69,.98) 0.2s);
 }
 
 .timeline-content-inner > div {
-    -webkit-transition: max-height 0.5s linear, color 0.3s linear;
-    -moz-transition: max-height 0.5s linear, color 0.3s linear;
-    -o-transition: max-height 0.5s linear, color 0.3s linear;
-    -ms-transition: max-height 0.5s linear, color 0.3s linear;
-    transition: max-height 0.5s linear, color 0.3s linear;
+    @include transition(max-height 0.5s linear, color 0.3s linear);
 }
 
 .timeline-panel-close {
-    -webkit-transition: opacity 0.8s linear 0.2s;
-    -moz-transition: opacity 0.8s linear 0.2s;
-    -o-transition: opacity 0.8s linear  0.2s;
-    -ms-transition: opacity 0.8s linear 0.2s;
-    transition: opacity 0.8s linear 0.2s;
+    @include transition(opacity 0.8s linear 0.2s);
 }
 
 
@@ -300,7 +253,7 @@
 .timeline-event input[type="radio"]:checked + label:after {
     content: '\2714';
     color: #F26328;
-    box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.8);
+    @include box-shadow(0 0 0 5px rgba(255, 255, 255, 0.8));
 }
 
 .timeline-event input[type="radio"]:checked ~ .timeline-content-perspective:before {
@@ -312,26 +265,18 @@
 }
 
 .timeline-event input[type="radio"]:checked ~ .timeline-content-perspective .timeline-content {
-    -webkit-transform: rotateY(-5deg);
-    -moz-transform: rotateY(-5deg);
-    -o-transform: rotateY(-5deg);
-    -ms-transform: rotateY(-5deg);
-    transform: rotateY(-5deg);
+    @include transform(rotateY(-5deg));
 }
 
 .timeline-event input[type="radio"]:checked ~ .timeline-content-perspective .timeline-content-inner {
     border-color: #F26328;
-    box-shadow: 10px 0px 10px -6px rgba(0, 0, 0, 0.1);
+    @include box-shadow(10px 0px 10px -6px rgba(0, 0, 0, 0.1));
 }
 
 .timeline-event input[type="radio"]:checked ~ .timeline-content-perspective .timeline-content-inner > div {
-    max-height: 260px; /* Add media queries */
+    max-height: 2000px;
     color: rgba(0,0,0,0.6);
-    -webkit-transition-delay: 0s, 0.6s;
-    -moz-transition-delay: 0s, 0.6s;
-    -o-transition-delay: 0s, 0.6s;
-    -ms-transition-delay: 0s, 0.6s;
-    transition-delay: 0s, 0.6s;
+    @include transition-delay(0s, 0.6s);
 }
 
 .timeline-event input[type="radio"]:checked ~ .timeline-content-perspective .timeline-panel-close {
@@ -343,14 +288,10 @@
 }
 
 .timeline-event input[type="radio"]:checked ~ .timeline-thumb {
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    -o-transform: scale(1);
-    -ms-transform: scale(1);
-    transform: scale(1);
-    box-shadow: 
-        0 0 0 8px rgba(242,99,40,1), 
-        0 1px 1px rgba(255,255,255,0.5);
+    @include transform(scale(1));
+    @include box-shadow( 
+    0 0 0 8px rgba(242,99,40,1), 
+    0 1px 1px rgba(255,255,255,0.5));
 }
 
 .timeline-event input[type="radio"]:checked ~ .timeline-thumb span {
@@ -394,11 +335,7 @@
 
 
     .timeline-thumb {
-        -webkit-transform: scale(0.8);
-        -moz-transform: scale(0.8);
-        -o-transform: scale(0.8);
-        -ms-transform: scale(0.8);
-        transform: scale(0.8);
+        @include transform(scale(0.8));
     }
 
     .timeline-event input[type="radio"] {
@@ -428,19 +365,11 @@
     }
 
     .timeline-content {
-        -webkit-transform: rotateX(-10deg);
-        -moz-transform: rotateX(-10deg);
-        -o-transform: rotateX(-10deg);
-        -ms-transform: rotateX(-10deg);
-        transform: rotateX(-10deg);
+        @include transform(rotateX(-10deg));
     }
 
     .timeline-event input[type="radio"]:checked ~ .timeline-content-perspective .timeline-content {
-        -webkit-transform: rotateX(10deg);
-        -moz-transform: rotateX(10deg);
-        -o-transform: rotateX(10deg);
-        -ms-transform: rotateX(10deg);
-        transform: rotateX(10deg);
+        @include transform(rotateX(10deg));
     }
 
     .timeline-content-inner {
@@ -450,7 +379,7 @@
 
     .timeline-event input[type="radio"]:checked ~ .timeline-content-perspective .timeline-content-inner {
         border-color: #F26328;
-        box-shadow: 0 10px 10px -6px rgba(0, 0, 0, 0.1);
+        @include box-shadow(0 10px 10px -6px rgba(0, 0, 0, 0.1));
     }
 
     .timeline-content-inner:before {

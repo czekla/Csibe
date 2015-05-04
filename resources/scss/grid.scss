@@ -1,3 +1,5 @@
+@import "_common.scss";
+
 .rooms-container {
     position: relative;
 }
@@ -72,15 +74,12 @@
     top: 50%;
     height: 1px;
     background: #888;
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    transform: rotate(45deg);
+    @include transform(rotate(45deg));
 }
 
 .og-close::after {
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    transform: rotate(-45deg);
+    @include transform(rotate(-45deg));
+
 }
 
 .og-close:hover::before,
@@ -90,12 +89,10 @@
 
 .og-fullimg,
 .og-details {
-    /*width: 50%;*/
     float: left;
     height: 100%;
     overflow: hidden;
     position: relative;
-    /*display: block;*/
 }
 
 .og-details {
@@ -157,32 +154,18 @@
     height: 20px;
     border-radius: 50%;
     background: #ddd;
-    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ccc;
+    @include box-shadow(0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ccc);
     position: absolute;
     top: 50%;
     left: 50%;
     margin: -25px 0 0 -25px;
-    -webkit-animation: loader 0.5s infinite ease-in-out both;
-    -moz-animation: loader 0.5s infinite ease-in-out both;
-    animation: loader 0.5s infinite ease-in-out both;
+    @include animation(loader 0.5s infinite ease-in-out both);
 }
 
-@-webkit-keyframes loader {
+@include keyframes(loader){
     0% { background: #ddd; }
-    33% { background: #ccc; box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd; }
-    66% { background: #ccc; box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc; }
-}
-
-@-moz-keyframes loader {
-    0% { background: #ddd; }
-    33% { background: #ccc; box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd; }
-    66% { background: #ccc; box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc; }
-}
-
-@keyframes loader {
-    0% { background: #ddd; }
-    33% { background: #ccc; box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd; }
-    66% { background: #ccc; box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc; }
+    33% { background: #ccc; @include box-shadow(0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd); }
+    66% { background: #ccc; @include box-shadow(0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc); }
 }
 
 @media screen and (max-width: 830px) {

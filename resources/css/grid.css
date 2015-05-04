@@ -67,11 +67,15 @@
   background: #888;
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
   transform: rotate(45deg); }
 
 .og-close::after {
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
   transform: rotate(-45deg); }
 
 .og-close:hover::before,
@@ -80,12 +84,10 @@
 
 .og-fullimg,
 .og-details {
-  /*width: 50%;*/
   float: left;
   height: 100%;
   overflow: hidden;
-  position: relative;
-  /*display: block;*/ }
+  position: relative; }
 
 .og-details {
   width: calc(50% - 60px);
@@ -138,6 +140,8 @@
   height: 20px;
   border-radius: 50%;
   background: #ddd;
+  -webkit-box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ccc;
+  -moz-box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ccc;
   box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ccc;
   position: absolute;
   top: 50%;
@@ -145,6 +149,8 @@
   margin: -25px 0 0 -25px;
   -webkit-animation: loader 0.5s infinite ease-in-out both;
   -moz-animation: loader 0.5s infinite ease-in-out both;
+  -ms-animation: loader 0.5s infinite ease-in-out both;
+  -o-animation: loader 0.5s infinite ease-in-out both;
   animation: loader 0.5s infinite ease-in-out both; }
 
 @-webkit-keyframes loader {
@@ -152,27 +158,65 @@
     background: #ddd; }
   33% {
     background: #ccc;
+    -webkit-box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd;
+    -moz-box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd;
     box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd; }
   66% {
     background: #ccc;
+    -webkit-box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc;
+    -moz-box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc;
     box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc; } }
 @-moz-keyframes loader {
   0% {
     background: #ddd; }
   33% {
     background: #ccc;
+    -webkit-box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd;
+    -moz-box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd;
     box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd; }
   66% {
     background: #ccc;
+    -webkit-box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc;
+    -moz-box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc;
+    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc; } }
+@-ms-keyframes loader {
+  0% {
+    background: #ddd; }
+  33% {
+    background: #ccc;
+    -webkit-box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd;
+    -moz-box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd;
+    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd; }
+  66% {
+    background: #ccc;
+    -webkit-box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc;
+    -moz-box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc;
+    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc; } }
+@-o-keyframes loader {
+  0% {
+    background: #ddd; }
+  33% {
+    background: #ccc;
+    -webkit-box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd;
+    -moz-box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd;
+    box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd; }
+  66% {
+    background: #ccc;
+    -webkit-box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc;
+    -moz-box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc;
     box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc; } }
 @keyframes loader {
   0% {
     background: #ddd; }
   33% {
     background: #ccc;
+    -webkit-box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd;
+    -moz-box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd;
     box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd; }
   66% {
     background: #ccc;
+    -webkit-box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc;
+    -moz-box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc;
     box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc; } }
 @media screen and (max-width: 830px) {
   .og-expander h3 {

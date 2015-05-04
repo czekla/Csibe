@@ -24,6 +24,10 @@
   background: url("../images/star-on.svg");
   background-size: contain;
   opacity: 0;
+  -webkit-transition: opacity 0.2s linear;
+  -moz-transition: opacity 0.2s linear;
+  -o-transition: opacity 0.2s linear;
+  -ms-transition: opacity 0.2s linear;
   transition: opacity 0.2s linear; }
 
 .starRating:not(old) > label:hover:before,
@@ -53,6 +57,8 @@
   width: 100%; }
 
 .rating-bar, .rating-bar span {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
   border-radius: 4px; }
 
 .rate {
@@ -91,11 +97,11 @@
 
 /* CSS3 Animation */
 .animate {
-  animation: progress 2s linear;
-  -moz-animation: progress 2s linear;
   -webkit-animation: progress 2s linear;
+  -moz-animation: progress 2s linear;
   -ms-animation: progress 2s linear;
-  -o-animation: progress 2s linear; }
+  -o-animation: progress 2s linear;
+  animation: progress 2s linear; }
 
 /* Span fills 100% of parent div (.rate-n) which may be 10-100% of the width of black bar (.rating) */
 @-webkit-keyframes progress {

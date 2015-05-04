@@ -1,3 +1,5 @@
+@import "_common.scss";
+
 .intro {
     position: fixed;
     z-index: 10;
@@ -5,15 +7,12 @@
     width: 100%;
     height: 100%;
     background: #2a2e39;
-    -webkit-transition: -webkit-transform 0.6s;
-    transition: transform 0.6s;
-    -webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
-    transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+    @include transition(transform 0.6s);
+    @include transition-timing-function(cubic-bezier(0.7, 0, 0.3, 1));
 }
 
 .container--open .intro {
-    -webkit-transform: translate3d(0, -100%, 0) translate3d(0, 125px, 0);
-    transform: translate3d(0, -100%, 0) translate3d(0, 125px, 0);
+    @include transform(translate3d(0, -100%, 0) translate3d(0, 125px, 0));
 }
 
 /* Fullscreen image */
@@ -25,12 +24,9 @@
     height: 100%;
     opacity: 0.8;
     background: url("../images/bg-pattern.jpg") top left repeat;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    -webkit-transition: -webkit-transform 0.6s, opacity 0.6s;
-    transition: transform 0.6s, opacity 0.6s;
-    -webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
-    transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+    @include transform(translate3d(0, 0, 0));
+    @include transition(transform 0.6s, opacity 0.6s);
+    @include transition-timing-function(cubic-bezier(0.7, 0, 0.3, 1));
 }
 
 .intro__logo {
@@ -43,15 +39,13 @@
 
 .container--open .intro__image {
     opacity: 0;
-    -webkit-transform: translate3d(0, 20%, 0);
-    transform: translate3d(0, 20%, 0);
+    @include transform(translate3d(0, 20%, 0));
 }
 
 /* Intro content */
 .intro__wrapper {
     position: absolute;
     bottom: 0;
-    /*padding: 1.8em;*/
     width: 100%;
     font-size: 1.15em;
 }
@@ -88,24 +82,20 @@
 }
 
 .icon {
-    -webkit-transform-origin: 50% 50%;
-    transform-origin: 50% 50%;
-    -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
-    transition: opacity 0.3s, transform 0.3s;
+    @include transform-origin(50% 50%);
+    @include transition(opacity 0.3s, transform 0.3s);
 }
 
 /* Hide grid and show cross when opening */
 .icon--cross,
 .trigger--active .icon--grid {
     opacity: 0;
-    -webkit-transform: scale3d(0.5, 0.5, 1);
-    transform: scale3d(0.5, 0.5, 1);
+    @include transform(scale3d(0.5, 0.5, 1));
 }
 
 .trigger--active .icon--cross {
     opacity: 1;
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
+    @include transform(scale3d(1, 1, 1));
 }
 
 .navbar {
@@ -113,8 +103,7 @@
     width: 400px;
     margin: 10px auto;
     opacity: 0;
-    -webkit-transition: opacity 0.3s;
-    transition: opacity 0.3s;
+    @include transition(opacity 0.3s);
 } 
 
 .container--open .navbar {
@@ -141,10 +130,8 @@
     background: #2a2e39;
     content: '';
     opacity: 1;
-    -webkit-transition: opacity 0.6s;
-    transition: opacity 0.6s;
-    -webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
-    transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+    @include transition(opacity 0.6s);
+    @include transition-timing-function(cubic-bezier(0.7, 0, 0.3, 1));
     pointer-events: none;
 }
 

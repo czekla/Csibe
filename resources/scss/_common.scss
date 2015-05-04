@@ -5,11 +5,10 @@ $primary-color: #fff;
 @mixin border-radius($radius) {
     -webkit-border-radius: $radius;
     -moz-border-radius: $radius;
-    -ms-border-radius: $radius;
     border-radius: $radius;
 }
 
-@mixin box-shadow($param) {
+@mixin box-shadow($param...) {
     -webkit-box-shadow: $param;
     -moz-box-shadow: $param;
     box-shadow: $param;
@@ -22,10 +21,83 @@ $primary-color: #fff;
     background-size: $bgsize;
 }
 
-@mixin transform($param){
+@mixin transform($param...){
     -webkit-transform: $param;
     -moz-transform: $param;
     -o-transform: $param;
     -ms-transform: $param;
     transform: $param;
+}
+
+@mixin transform-origin($param...){
+    -webkit-transform-origin: $param;
+    -moz-transform-origin: $param;
+    -o-transform-origin: $param;
+    -ms-transform-origin: $param;
+    transform-origin: $param;
+}
+
+@mixin transform-style($param...){
+    -webkit-transform-style: $param;
+    -moz-transform-style: $param;
+    -ms-transform-style: $param;
+    -o-transform-style: $param;
+    transform-style: $param;
+}
+
+@mixin animation($param...) {
+    -webkit-animation: $param;
+    -moz-animation: $param;
+    -ms-animation: $param;
+    -o-animation: $param;
+    animation: $param;
+}
+
+@mixin transition($param...){
+    -webkit-transition: $param;
+    -moz-transition: $param;
+    -o-transition: $param;
+    -ms-transition: $param;
+    transition: $param;
+}
+
+@mixin transition-delay($param...){
+    -webkit-transition-delay: $param;
+    -moz-transition-delay: $param;
+    -o-transition-delay: $param;
+    -ms-transition-delay: $param;
+    transition-delay: $param;
+}
+
+@mixin perspective($param...){
+    -webkit-perspective: $param;
+    -moz-perspective: $param;
+    -o-perspective: $param;
+    -ms-perspective: $param;
+    perspective: $param;
+}
+
+@mixin transition-timing-function($param...){
+    -webkit-transition-timing-function: $param;
+    -moz-transition-timing-function: $param;
+    -o-transition-timing-function: $param;
+    transition-timing-function: $param;
+}
+
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+        @content; 
+    }
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+    @-ms-keyframes #{$name} {
+        @content;
+    }
+    @-o-keyframes #{$name} {
+        @content;
+    }
+    @keyframes #{$name} {
+        @content;
+    } 
 }

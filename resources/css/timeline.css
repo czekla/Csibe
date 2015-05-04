@@ -26,8 +26,12 @@
   position: absolute;
   width: 100px;
   height: 100px;
+  -webkit-box-shadow: 0 0 0 8px #41838e, 0 1px 1px rgba(255, 255, 255, 0.5);
+  -moz-box-shadow: 0 0 0 8px #41838e, 0 1px 1px rgba(255, 255, 255, 0.5);
   box-shadow: 0 0 0 8px #41838e, 0 1px 1px rgba(255, 255, 255, 0.5);
   background-repeat: no-repeat;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
   border-radius: 50%;
   -webkit-transform: scale(0.8) translateX(24px);
   -moz-transform: scale(0.8) translateX(24px);
@@ -99,6 +103,8 @@
   font-family: 'fontawesome-selected';
   content: '\e702';
   background: #fff;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
   border-radius: 50%;
   color: #41838E;
   font-size: 26px;
@@ -152,6 +158,8 @@
   color: #333;
   border: none;
   border-left: 5px solid #41838e;
+  -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background: #fff; }
 
@@ -165,8 +173,6 @@
   position: relative;
   font-size: 18px;
   max-height: 0px;
-  /*overflow: hidden;*/
-  color: transparent;
   color: transparent;
   text-align: left; }
 
@@ -203,11 +209,15 @@
   background: #888;
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
   transform: rotate(45deg); }
 
 .timeline-panel-close::after {
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
   transform: rotate(-45deg); }
 
 .timeline-panel-close:hover::before,
@@ -227,15 +237,15 @@
 .timeline-content-inner {
   -webkit-transition: box-shadow 0.8s linear 0.2s;
   -moz-transition: box-shadow 0.8s linear 0.2s;
-  -o-transition: box-shadow 0.8s linear  0.2s;
+  -o-transition: box-shadow 0.8s linear 0.2s;
   -ms-transition: box-shadow 0.8s linear 0.2s;
   transition: box-shadow 0.8s linear 0.2s; }
 
 .timeline-content {
-  -webkit-transition: -webkit-transform 0.8s cubic-bezier(0.59, 1.45, 0.69, 0.98) 0.2s;
-  -moz-transition: -moz-transform 0.8s cubic-bezier(0.59, 1.45, 0.69, 0.98) 0.2s;
-  -o-transition: -o-transform 0.8s cubic-bezier(0.59, 1.45, 0.69, 0.98) 0.2s;
-  -ms-transition: -ms-transform 0.8s cubic-bezier(0.59, 1.45, 0.69, 0.98) 0.2s;
+  -webkit-transition: transform 0.8s cubic-bezier(0.59, 1.45, 0.69, 0.98) 0.2s;
+  -moz-transition: transform 0.8s cubic-bezier(0.59, 1.45, 0.69, 0.98) 0.2s;
+  -o-transition: transform 0.8s cubic-bezier(0.59, 1.45, 0.69, 0.98) 0.2s;
+  -ms-transition: transform 0.8s cubic-bezier(0.59, 1.45, 0.69, 0.98) 0.2s;
   transition: transform 0.8s cubic-bezier(0.59, 1.45, 0.69, 0.98) 0.2s; }
 
 .timeline-content-inner > div {
@@ -248,7 +258,7 @@
 .timeline-panel-close {
   -webkit-transition: opacity 0.8s linear 0.2s;
   -moz-transition: opacity 0.8s linear 0.2s;
-  -o-transition: opacity 0.8s linear  0.2s;
+  -o-transition: opacity 0.8s linear 0.2s;
   -ms-transition: opacity 0.8s linear 0.2s;
   transition: opacity 0.8s linear 0.2s; }
 
@@ -256,6 +266,8 @@
 .timeline-event input[type="radio"]:checked + label:after {
   content: '\2714';
   color: #F26328;
+  -webkit-box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.8);
+  -moz-box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.8);
   box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.8); }
 
 .timeline-event input[type="radio"]:checked ~ .timeline-content-perspective:before {
@@ -273,11 +285,12 @@
 
 .timeline-event input[type="radio"]:checked ~ .timeline-content-perspective .timeline-content-inner {
   border-color: #F26328;
+  -webkit-box-shadow: 10px 0px 10px -6px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 10px 0px 10px -6px rgba(0, 0, 0, 0.1);
   box-shadow: 10px 0px 10px -6px rgba(0, 0, 0, 0.1); }
 
 .timeline-event input[type="radio"]:checked ~ .timeline-content-perspective .timeline-content-inner > div {
-  max-height: 260px;
-  /* Add media queries */
+  max-height: 2000px;
   color: rgba(0, 0, 0, 0.6);
   -webkit-transition-delay: 0s, 0.6s;
   -moz-transition-delay: 0s, 0.6s;
@@ -297,6 +310,8 @@
   -o-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);
+  -webkit-box-shadow: 0 0 0 8px #f26328, 0 1px 1px rgba(255, 255, 255, 0.5);
+  -moz-box-shadow: 0 0 0 8px #f26328, 0 1px 1px rgba(255, 255, 255, 0.5);
   box-shadow: 0 0 0 8px #f26328, 0 1px 1px rgba(255, 255, 255, 0.5); }
 
 .timeline-event input[type="radio"]:checked ~ .timeline-thumb span {
@@ -376,6 +391,8 @@
 
   .timeline-event input[type="radio"]:checked ~ .timeline-content-perspective .timeline-content-inner {
     border-color: #F26328;
+    -webkit-box-shadow: 0 10px 10px -6px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 10px 10px -6px rgba(0, 0, 0, 0.1);
     box-shadow: 0 10px 10px -6px rgba(0, 0, 0, 0.1); }
 
   .timeline-content-inner:before {
