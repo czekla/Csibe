@@ -1,10 +1,13 @@
-angular.module("Csibe-app", ['ui.router', 'angular-loading-bar'])
+angular.module("Csibe-app", ['ui.router', 'angular-loading-bar', 'ui.bootstrap'])
         .controller("menuCtrl", menuCtrl)
         .controller("welcomeCtrl", welcomeCtrl)
         .controller("roomsCtrl", roomsCtrl)
         .controller("roomDetailsCtrl", roomDetailsCtrl)
+        .controller("LoginModalCtrl",LoginModalCtrl)
         .factory("expandDetailService", expandDetailService)
         .factory("slidingHeaderLayoutService", slidingHeaderLayoutService)
+        .factory("loginModalService", loginModalService)
+        .service("UsersApi",UsersApi)
         .config([
             '$stateProvider',
             '$urlRouterProvider',
@@ -15,21 +18,26 @@ angular.module("Csibe-app", ['ui.router', 'angular-loading-bar'])
                             url: '/welcome',
                             templateUrl: './templates/welcome.html',
                             controller: 'welcomeCtrl',
-                            onEnter: function () {
+                            data: {
+                                requireLogin: false
                             }
                         })
                         .state('rooms', {
                             url: '/rooms',
                             templateUrl: './templates/rooms.php',
                             controller: 'roomsCtrl',
-                            onExit: function () {
+                            data: {
+                                requireLogin: false
                             }
                         })
                         .state('roomdetails', {
                             url: '/rooms/view/:roomid',
                             templateUrl: './templates/roomDetails.html',
                             controller: 'roomDetailsCtrl',
-                            controllerAs: 'details'
+                            controllerAs: 'details',
+                            data: {
+                                requireLogin: true
+                            }
                         })
                         .state('menu', {
                             url: '/menu',
@@ -41,6 +49,36 @@ angular.module("Csibe-app", ['ui.router', 'angular-loading-bar'])
         .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
                 cfpLoadingBarProvider.includeSpinner = false;
             }])
+        .config(["$httpProvider",function ($httpProvider) {
+            $httpProvider.interceptors.push(function ($timeout, $q, $injector) {
+                var loginModalService, $http, $state;
+                // this trick must be done so that we don't receive
+                // `Uncaught Error: [$injector:cdep] Circular dependency found`
+                $timeout(function () {
+                    loginModalService = $injector.get('loginModalService');
+                    $http = $injector.get('$http');
+                    $state = $injector.get('$state');
+                });
+                return {
+                    responseError: function (rejection) {
+                        if (rejection.status !== 401) {
+                            return rejection;
+                        }
+
+                        var deferred = $q.defer();
+                        loginModalService()
+                                .then(function () {
+                                    deferred.resolve($http(rejection.config));
+                                })
+                                .catch(function () {
+                                    $state.go('welcome');
+                                    deferred.reject(rejection);
+                                });
+                        return deferred.promise;
+                    }
+                };
+            });
+        }])
         .directive("routerhref", function ($compile) {
             return {
                 restrict: 'A',
@@ -51,11 +89,23 @@ angular.module("Csibe-app", ['ui.router', 'angular-loading-bar'])
                 }
             };
         })
-        .run(
-                ['$rootScope', '$state', '$stateParams', 'slidingHeaderLayoutService',
-                    function ($rootScope, $state, $stateParams, slidingHeaderLayoutService) {
-                        $rootScope.$state = $state;
-                        $rootScope.$stateParams = $stateParams;
-                        slidingHeaderLayoutService.init();
+        .run(['$rootScope', '$state', '$stateParams', 'slidingHeaderLayoutService', 'loginModalService', 
+            function ($rootScope, $state, $stateParams, slidingHeaderLayoutService, loginModalService) {
+                $rootScope.$state = $state;
+                $rootScope.$stateParams = $stateParams;
+                slidingHeaderLayoutService.init();
+                $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+                    var requireLogin = toState.data.requireLogin;
+                    if (requireLogin && typeof $rootScope.currentUser === 'undefined') {
+                        event.preventDefault();
+                        loginModalService()
+                                .then(function () {
+                                    return $state.go(toState.name, toParams);
+                                })
+                                .catch(function () {
+                                    return $state.go('welcome');
+                                });
                     }
-                ]);
+                });
+            }
+        ]);

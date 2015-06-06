@@ -535,7 +535,7 @@ expandDetailService.$inject = ["$http", "$compile", "$rootScope"];
 
 
 var slidingHeaderLayoutService = function ($window, $rootScope) {
-    var container = angular.element('#container'),
+    var container = angular.element('#Esc-Apes-container'),
             trigger = container.find('button.trigger');
 
     var toggleContent = function () {
@@ -583,3 +583,40 @@ var slidingHeaderLayoutService = function ($window, $rootScope) {
     };
 };
 slidingHeaderLayoutService.$inject = ["$window", "$rootScope"];
+
+var loginModalService = function ($modal, $rootScope) {
+
+    function assignCurrentUser(user) {
+        $rootScope.currentUser = user;
+        return user;
+    }
+
+    return function () {
+        var instance = $modal.open({
+            templateUrl: './templates/loginModalTemplate.html',
+            controller: 'LoginModalCtrl',
+            controllerAs: 'LoginModalCtrl'
+        });
+
+        return instance.result.then(assignCurrentUser);
+    };
+
+};
+loginModalService.$inject = ["$modal", "$rootScope"];
+
+var UsersApi = function ($q) {
+
+    this.login = function (email, password) {
+        var deferred = $q.defer();
+
+        if (true) {
+                deferred.resolve('Hello!');
+            } else {
+                deferred.reject('Bye.');
+            }
+
+        return deferred.promise;
+    };
+};
+
+UsersApi.$inject = ["$q"];

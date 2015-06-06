@@ -98,7 +98,7 @@
     @include transform(scale3d(1, 1, 1));
 }
 
-.navbar {
+.menubar {
     display: block;
     width: 400px;
     margin: 10px auto;
@@ -106,7 +106,7 @@
     @include transition(opacity 0.3s);
 } 
 
-.container--open .navbar {
+.container--open .menubar {
     opacity: 1;
 }
 

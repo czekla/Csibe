@@ -126,7 +126,7 @@
   -ms-transform: scale3d(1, 1, 1);
   transform: scale3d(1, 1, 1); }
 
-.navbar {
+.menubar {
   display: block;
   width: 400px;
   margin: 10px auto;
@@ -137,7 +137,7 @@
   -ms-transition: opacity 0.3s;
   transition: opacity 0.3s; }
 
-.container--open .navbar {
+.container--open .menubar {
   opacity: 1; }
 
 /* Main content */
