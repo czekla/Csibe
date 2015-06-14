@@ -1,4 +1,4 @@
-angular.module("Csibe-app", ['ui.router', 'angular-loading-bar', 'ui.bootstrap'])
+angular.module("Csibe-app", ['ui.router', 'angular-loading-bar', 'ui.bootstrap', 'ngStorage'])
         .controller("menuCtrl", menuCtrl)
         .controller("welcomeCtrl", welcomeCtrl)
         .controller("roomsCtrl", roomsCtrl)
@@ -8,6 +8,8 @@ angular.module("Csibe-app", ['ui.router', 'angular-loading-bar', 'ui.bootstrap']
         .factory("slidingHeaderLayoutService", slidingHeaderLayoutService)
         .factory("loginModalService", loginModalService)
         .service("UsersApi",UsersApi)
+        .service("AuthService",AuthService)
+        .service("TokenHandler",TokenHandler)
         .config([
             '$stateProvider',
             '$urlRouterProvider',
@@ -89,22 +91,20 @@ angular.module("Csibe-app", ['ui.router', 'angular-loading-bar', 'ui.bootstrap']
                 }
             };
         })
-        .run(['$rootScope', '$state', '$stateParams', 'slidingHeaderLayoutService', 'loginModalService', 
-            function ($rootScope, $state, $stateParams, slidingHeaderLayoutService, loginModalService) {
+        .run(['$rootScope', '$state', '$stateParams', 'slidingHeaderLayoutService', 'AuthService', 'TokenHandler',
+            function ($rootScope, $state, $stateParams, slidingHeaderLayoutService, AuthService, TokenHandler) {
                 $rootScope.$state = $state;
                 $rootScope.$stateParams = $stateParams;
                 slidingHeaderLayoutService.init();
                 $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
                     var requireLogin = toState.data.requireLogin;
-                    if (requireLogin && typeof $rootScope.currentUser === 'undefined') {
+                    if (requireLogin && angular.isUndefined(TokenHandler.getToken())) {
                         event.preventDefault();
-                        loginModalService()
-                                .then(function () {
-                                    return $state.go(toState.name, toParams);
-                                })
-                                .catch(function () {
-                                    return $state.go('welcome');
-                                });
+                        AuthService.claim().then(function (){
+                            return $state.go(toState.name, toParams);
+                        }, function (){
+                            return $state.go('welcome');
+                        });
                     }
                 });
             }

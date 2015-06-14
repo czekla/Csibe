@@ -61,11 +61,12 @@ var roomDetailsCtrl = function ($http, $stateParams, $sce) {
 roomDetailsCtrl.$inject = ["$http", "$stateParams", "$sce"];
 
 var LoginModalCtrl = function ($scope, UsersApi) {
-    this.cancel = $scope.$dismiss;
+    $scope.cancel = $scope.$dismiss;
 
-    this.submit = function (email, password) {
-        UsersApi.login(email, password).then(function (user) {
-            $scope.$close(user);
+    $scope.submit = function () {
+        
+        UsersApi.login($scope.email, $scope.password).then(function (token) {
+            $scope.$close(token);
         });
     };
 };

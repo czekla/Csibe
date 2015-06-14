@@ -586,9 +586,8 @@ slidingHeaderLayoutService.$inject = ["$window", "$rootScope"];
 
 var loginModalService = function ($modal, $rootScope) {
 
-    function assignCurrentUser(user) {
-        $rootScope.currentUser = user;
-        return user;
+    function assignCurrentUser(token) {
+        return token;
     }
 
     return function () {
@@ -604,19 +603,82 @@ var loginModalService = function ($modal, $rootScope) {
 };
 loginModalService.$inject = ["$modal", "$rootScope"];
 
-var UsersApi = function ($q) {
+var UsersApi = function ($q, $http) {
 
     this.login = function (email, password) {
         var deferred = $q.defer();
 
-        if (true) {
-                deferred.resolve('Hello!');
-            } else {
-                deferred.reject('Bye.');
-            }
+        $http.post("backend/login.php", {
+            email: email,
+            password: password
+        }).success(function (data, status, headers, config) {
+            deferred.resolve(data.token);
+        }).error(function (data, status, headers, config) {
+            deferred.reject();
+        });
 
         return deferred.promise;
     };
 };
 
-UsersApi.$inject = ["$q"];
+UsersApi.$inject = ["$q", "$http"];
+
+var AuthService = function ($http, $q, loginModalService, TokenHandler) {
+
+    var validateToken = function () {
+        var deferred = $q.defer();
+        var token = TokenHandler.getToken();
+        
+        if (angular.isDefined(token)) {
+            $http.post("backend/authenticator.php", {
+                token: token
+            }).success(function (data, status, headers, config) {
+                TokenHandler.store(data.token);
+                deferred.resolve('Authenticated.');
+            }).error(function (data, status, headers, config) {
+                TokenHandler.delete();
+                deferred.reject('Authenticate denide.1');
+            });
+        } else {
+            deferred.reject('Authenticate denide.2');
+        }
+        return deferred.promise;
+    };
+
+    this.claim = function () {
+
+        var deferred = $q.defer();
+        validateToken().then(function () {
+            deferred.resolve();
+        }, function () {
+            loginModalService()
+                    .then(function (token) {
+                        TokenHandler.store(token);
+                        deferred.resolve();
+                    })
+                    .catch(function () {
+                        deferred.reject();
+                    });
+
+        });
+        
+        return deferred.promise;
+    };
+};
+
+AuthService.$inject = ["$http", "$q", "loginModalService", "TokenHandler"];
+
+var TokenHandler = function ($localStorage){
+    this.store = function (token){
+        $localStorage.token = token;
+    };
+    
+    this.delete = function (){
+        delete $localStorage.token;
+    };
+    
+    this.getToken = function (){
+        return $localStorage.token;
+    };
+};
+TokenHandler.$inject = ["$localStorage"];
