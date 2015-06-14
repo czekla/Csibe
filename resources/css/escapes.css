@@ -26,10 +26,8 @@ html {
   background-size: cover; }
 
 body {
-  color: #000; 
-  background-color: transparent;
-  background: transparent;
-}
+  color: #000;
+  background-color: transparent; }
 
 .main-wrapper {
   display: block;

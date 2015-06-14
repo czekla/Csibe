@@ -53,11 +53,11 @@ angular.module("Csibe-app", ['ui.router', 'angular-loading-bar', 'ui.bootstrap',
             }])
         .config(["$httpProvider",function ($httpProvider) {
             $httpProvider.interceptors.push(function ($timeout, $q, $injector) {
-                var loginModalService, $http, $state;
+                var AuthService, $http, $state;
                 // this trick must be done so that we don't receive
                 // `Uncaught Error: [$injector:cdep] Circular dependency found`
                 $timeout(function () {
-                    loginModalService = $injector.get('loginModalService');
+                    AuthService = $injector.get('AuthService');
                     $http = $injector.get('$http');
                     $state = $injector.get('$state');
                 });
@@ -68,7 +68,7 @@ angular.module("Csibe-app", ['ui.router', 'angular-loading-bar', 'ui.bootstrap',
                         }
 
                         var deferred = $q.defer();
-                        loginModalService()
+                        AuthService().claim()
                                 .then(function () {
                                     deferred.resolve($http(rejection.config));
                                 })
@@ -103,7 +103,7 @@ angular.module("Csibe-app", ['ui.router', 'angular-loading-bar', 'ui.bootstrap',
                         AuthService.claim().then(function (){
                             return $state.go(toState.name, toParams);
                         }, function (){
-                            return $state.go('welcome');
+                            //return $state.go('welcome');
                         });
                     }
                 });

@@ -63,11 +63,28 @@ roomDetailsCtrl.$inject = ["$http", "$stateParams", "$sce"];
 var LoginModalCtrl = function ($scope, UsersApi) {
     $scope.cancel = $scope.$dismiss;
 
-    $scope.submit = function () {
-        
+    var submit = function () {
+
         UsersApi.login($scope.email, $scope.password).then(function (token) {
             $scope.$close(token);
+        }, function () {
+            closeAlert($scope.alerts.length-1);
+            addAlert("Login failed");
         });
     };
+    
+    $scope.submit = submit;
+
+    $scope.alerts = [];
+
+    var addAlert = function (msg) {
+        $scope.alerts.push({type: 'danger', msg: msg});
+    };
+    
+    var closeAlert = function (index) {
+        $scope.alerts.splice(index, 1);
+    };
+    
+    $scope.closeAlert = closeAlert;
 };
 LoginModalCtrl.$inject = ["$scope", "UsersApi"];

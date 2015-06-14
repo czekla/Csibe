@@ -1,8 +1,8 @@
 <?php
 
 //$token = $_REQUEST["token"];
-$data = json_decode(file_get_contents("php://input"));
-$token = $data->token;
+$request_data = json_decode(file_get_contents("php://input"));
+$token = $request_data->token;
 
 require './auth.php';
 

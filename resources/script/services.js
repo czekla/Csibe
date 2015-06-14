@@ -612,7 +612,12 @@ var UsersApi = function ($q, $http) {
             email: email,
             password: password
         }).success(function (data, status, headers, config) {
-            deferred.resolve(data.token);
+            if (status === 200){
+                deferred.resolve(data.token);
+            } else {
+                deferred.reject();
+            }
+            
         }).error(function (data, status, headers, config) {
             deferred.reject();
         });
