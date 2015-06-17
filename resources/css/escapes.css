@@ -177,7 +177,7 @@ body {
   display: block;
   width: 400px;
   margin: 10px auto;
-  opacity: 0;
+  /*opacity: 0;*/
   -webkit-transition: opacity 0.3s;
   -moz-transition: opacity 0.3s;
   -o-transition: opacity 0.3s;
@@ -186,6 +186,9 @@ body {
 
 .container--open .menubar {
   opacity: 1; }
+
+.container--close .menubar {
+  opacity: 0; }
 
 /* Main content */
 .items-wrap {

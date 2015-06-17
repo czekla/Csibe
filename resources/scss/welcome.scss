@@ -102,12 +102,16 @@
     display: block;
     width: 400px;
     margin: 10px auto;
-    opacity: 0;
+    /*opacity: 0;*/
     @include transition(opacity 0.3s);
 } 
 
 .container--open .menubar {
     opacity: 1;
+}
+
+.container--close .menubar {
+    opacity: 0;
 }
 
 

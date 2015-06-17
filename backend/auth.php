@@ -17,7 +17,12 @@ class Auth {
             return FALSE;
         } catch (ExpiredException $e) {
             return FALSE;
+        } catch (UnexpectedValueException $e) {
+            return FALSE;
+        } catch (DomainException $e) {
+            return FALSE;
         }
+        
     }
 
     public static function createToken($payload = array()) {

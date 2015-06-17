@@ -549,12 +549,14 @@ var slidingHeaderLayoutService = function ($window, $rootScope) {
 
     var open = function () {
         container.addClass('container--open');
+        container.removeClass('container--close');
         trigger.addClass('trigger--active');
         $window.removeEventListener('scroll', noscroll);
     };
 
     var close = function () {
         container.removeClass('container--open');
+        container.addClass('container--close');
         trigger.removeClass('trigger--active');
         $window.addEventListener('scroll', noscroll);
     };
@@ -597,7 +599,7 @@ var loginModalService = function ($modal, $rootScope) {
             controllerAs: 'LoginModalCtrl'
         });
 
-        return instance.result.then(assignCurrentUser);
+        return instance.result;//.then(assignCurrentUser);
     };
 
 };
@@ -612,12 +614,12 @@ var UsersApi = function ($q, $http) {
             email: email,
             password: password
         }).success(function (data, status, headers, config) {
-            if (status === 200){
+            if (status === 200) {
                 deferred.resolve(data.token);
             } else {
                 deferred.reject();
             }
-            
+
         }).error(function (data, status, headers, config) {
             deferred.reject();
         });
@@ -633,18 +635,27 @@ var AuthService = function ($http, $q, loginModalService, TokenHandler) {
     var validateToken = function () {
         var deferred = $q.defer();
         var token = TokenHandler.getToken();
-        
+
         if (angular.isDefined(token)) {
             $http.post("backend/authenticator.php", {
                 token: token
             }).success(function (data, status, headers, config) {
-                TokenHandler.store(data.token);
-                deferred.resolve('Authenticated.');
+                console.info("authenticator", status);
+                if (status === 200) {
+                    TokenHandler.store(data.token);
+                    
+                    deferred.resolve('Authenticated.');
+                } else {
+                    deferred.reject('Authenticate denide.0');
+                }
+
             }).error(function (data, status, headers, config) {
                 TokenHandler.delete();
+                console.info("authenticator", status);
                 deferred.reject('Authenticate denide.1');
             });
         } else {
+            console.info("authenticator", "no token");
             deferred.reject('Authenticate denide.2');
         }
         return deferred.promise;
@@ -653,36 +664,50 @@ var AuthService = function ($http, $q, loginModalService, TokenHandler) {
     this.claim = function () {
 
         var deferred = $q.defer();
-        validateToken().then(function () {
+        validateToken().then(function (text) {
+            console.info("claim", text);
             deferred.resolve();
-        }, function () {
+        }, function (text) {
+            console.info("claim", text);
             loginModalService()
                     .then(function (token) {
                         TokenHandler.store(token);
+                        console.info("loginModalService", token);
                         deferred.resolve();
                     })
                     .catch(function () {
+                        console.info("loginModalService", "no token");
                         deferred.reject();
                     });
 
         });
-        
+
         return deferred.promise;
+    };
+
+    this.isTokenValid = function () {
+        validateToken().then(function (text) {
+
+            return true;
+        }, function (text) {
+            console.info("then1", text);
+            return false;
+        });
     };
 };
 
 AuthService.$inject = ["$http", "$q", "loginModalService", "TokenHandler"];
 
-var TokenHandler = function ($localStorage){
-    this.store = function (token){
+var TokenHandler = function ($localStorage) {
+    this.store = function (token) {
         $localStorage.token = token;
     };
-    
-    this.delete = function (){
+
+    this.delete = function () {
         delete $localStorage.token;
     };
-    
-    this.getToken = function (){
+
+    this.getToken = function () {
         return $localStorage.token;
     };
 };
